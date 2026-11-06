@@ -1,18 +1,24 @@
 import java.util.Arrays;
 
-public class Day3 {
+public class AfterClassExercise4 {
     public static double percentileNearestRank(int[] responseTimes, int percentile) {
         double responseTime = 0;
+ 
+        if (responseTimes.length == 0 || responseTimes == null) {
+            System.out.println("The array is empty");
+            return responseTime; // If the array is empty, return 0
+        } else if (percentile < 1 || percentile > 100) {
+            System.out.println("Percentile must be between 1 and 100");
+            return responseTime; // If the percentile is out of range, return 0
+        } else {
+            int[] temp = Arrays.copyOf(responseTimes, responseTimes.length);    //复制数组
+            Arrays.sort(temp); //数组排序
 
-        // if (responseTimes.length == 0) {
+            int key = (int) Math.ceil(percentile * 1.0 / 100 * temp.length);
+            responseTime = temp[key - 1];
 
-        // }
-        int key = (int) Math.ceil(percentile * 1.0 / 100 * responseTimes.length);
-        // System.out.println("key=" + key);
-
-        responseTime = responseTimes[key - 1];
-
-        return responseTime;
+            return responseTime;
+        } 
     }
 
     public static void main(String[] args) {
@@ -31,8 +37,21 @@ public class Day3 {
         }
 
         double avgTime = totalTime * 1.0 / responseTimes.length; // 平均响应时间
-        double maxTime = responseTimes[responseTimes.length - 1]; // 最大值
-        double minTime = responseTimes[0]; // 最小值
+        
+        // double maxTime = responseTimes[responseTimes.length - 1]; // 最大值
+        // double minTime = responseTimes[0]; // 最小值
+
+        double maxTime = responseTimes[0];
+        double minTime = responseTimes[0];
+
+        for (int time : responseTimes) {
+            if (time > maxTime) {
+                maxTime = time;
+            }
+            if (time < minTime) {
+                minTime = time;
+            }
+        }
 
         System.out.println("平均响应时间：" + avgTime);
         System.out.println("最大响应时间：" + maxTime);
