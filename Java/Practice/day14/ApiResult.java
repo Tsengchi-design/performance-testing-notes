@@ -19,8 +19,7 @@ public class ApiResult {
     }
 
     public int getCount() {
-        int count = responseTimes.size();
-        return count;
+        return responseTimes.size();
     }
 
     public long getTotalTime() {
