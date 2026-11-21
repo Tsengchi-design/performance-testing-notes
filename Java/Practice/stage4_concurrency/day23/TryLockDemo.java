@@ -31,15 +31,5 @@ public class TryLockDemo {
         }
 
         System.out.println("所有线程执行完毕");
-
-        /* if (lock.tryLock()) {
-            try {
-                System.out.println("获取锁成功，执行临界区代码");
-            } finally {
-                lock.unlock();
-            }
-        } else {
-            System.out.println("获取锁失败，执行其他代码");
-        } */
     }
 }
